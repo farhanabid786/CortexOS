@@ -1,4 +1,4 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -85,4 +85,202 @@
   to {
     stroke-dashoffset: -100;
   }
+} */
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -----------------------------
+   Global Theme Variables
+------------------------------*/
+
+:root {
+  --bg: #f8fafc;
+  --surface: rgba(255, 255, 255, 0.75);
+  --surface-hover: rgba(255, 255, 255, 0.9);
+  --border: rgba(15, 23, 42, 0.12);
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --input-bg: rgba(255, 255, 255, 0.85);
+  --scrollbar-track: rgba(226, 232, 240, 0.6);
+  --scrollbar-thumb: rgba(100, 116, 139, 0.45);
+}
+
+.dark {
+  --bg: #090a0f;
+  --surface: rgba(18, 22, 38, 0.45);
+  --surface-hover: rgba(18, 22, 38, 0.6);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #ffffff;
+  --text-secondary: #cbd5e1;
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --scrollbar-track: rgba(0, 0, 0, 0.25);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.15);
+}
+
+/* -----------------------------
+   Base
+------------------------------*/
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition:
+    background-color .3s ease,
+    color .3s ease;
+}
+
+body {
+  font-family: Inter, sans-serif;
+}
+
+/* -----------------------------
+   Glass Effects
+------------------------------*/
+
+.glass-effect {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+}
+
+.glass-card {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all .3s ease;
+  box-shadow: 0 8px 30px rgba(0,0,0,.08);
+}
+
+.dark .glass-card {
+  box-shadow: 0 8px 30px rgba(0,0,0,.35);
+}
+
+.glass-card:hover {
+  background: var(--surface-hover);
+  border-color: rgba(0,242,254,.35);
+  transform: translateY(-2px);
+}
+
+/* -----------------------------
+   Inputs
+------------------------------*/
+
+.glass-input {
+  width: 100%;
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .75rem 1rem;
+  outline: none;
+  transition: .25s;
+}
+
+.glass-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.glass-input:focus {
+  border-color: #00f2fe;
+  box-shadow: 0 0 0 3px rgba(0,242,254,.18);
+}
+
+/* -----------------------------
+   Buttons
+------------------------------*/
+
+.btn-primary {
+  background: linear-gradient(
+      135deg,
+      #00f2fe,
+      #4facfe
+  );
+  color: white;
+  border-radius: 10px;
+  transition: .3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(79,172,254,.35);
+}
+
+/* -----------------------------
+   Text Helpers
+------------------------------*/
+
+.text-primary {
+  color: var(--text);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+/* -----------------------------
+   Glow Effects
+------------------------------*/
+
+.neon-glow-cyan {
+  box-shadow: 0 0 15px rgba(0,242,254,.35);
+}
+
+.neon-glow-purple {
+  box-shadow: 0 0 15px rgba(124,58,237,.35);
+}
+
+/* -----------------------------
+   Scrollbar
+------------------------------*/
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00f2fe;
+}
+
+/* -----------------------------
+   Flowchart
+------------------------------*/
+
+.node-line {
+  stroke-dasharray: 5;
+  animation: dash 10s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* -----------------------------
+   Smooth Theme Transition
+------------------------------*/
+
+* {
+  transition:
+    background-color .25s ease,
+    color .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
 }
