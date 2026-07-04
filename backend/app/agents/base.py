@@ -72,8 +72,8 @@ class BaseAgent:
             }
         }
         
-        max_retries = 3
-        retry_delay = 5.0
+        max_retries = 6
+        retry_delay = 12.0
         
         for attempt in range(max_retries):
             try:
