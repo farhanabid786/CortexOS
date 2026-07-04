@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # Database Service (Future PostgreSQL configuration)
+  db:
+    image: postgres:15-alpine
+    container_name: cortexos-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: cortexos
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # FastAPI Backend Service
+  backend:
+    build: ./backend
+    container_name: cortexos-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres_password@db:5432/cortexos
+      - JWT_SECRET_KEY=cortexos_super_secret_development_key_change_me_in_production
+      - JWT_ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=60
+      - RATE_LIMIT_PER_MINUTE=60
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    depends_on:
+      - db
+
+  # React Frontend Client Service
+  frontend:
+    build: ./frontend
+    container_name: cortexos-frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
