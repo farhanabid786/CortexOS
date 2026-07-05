@@ -139,10 +139,10 @@ export const BlueprintPage: React.FC = () => {
 
   if (loading && !project) {
     return (
-      <div className="min-h-screen flex flex-col bg-darkBg text-slate-100">
+      <div className="min-h-screen flex flex-col bg-lightBg dark:bg-darkBg text-slate-800 dark:text-slate-100 transition-colors duration-300">
         <Navbar />
         <div className="flex-1 flex justify-center items-center">
-          <div className="h-8 w-8 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
+          <div className="h-8 w-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
       </div>
     );
@@ -150,12 +150,12 @@ export const BlueprintPage: React.FC = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex flex-col bg-darkBg text-slate-100">
+      <div className="min-h-screen flex flex-col bg-lightBg dark:bg-darkBg text-slate-800 dark:text-slate-100 transition-colors duration-300">
         <Navbar />
         <div className="flex-1 flex flex-col justify-center items-center space-y-4">
-          <AlertCircle className="h-10 w-10 text-rose-400" />
+          <AlertCircle className="h-10 w-10 text-rose-500" />
           <h2 className="text-xl font-bold">Project Workspace not found</h2>
-          <button onClick={() => navigate('/dashboard')} className="text-cyan-400 font-semibold">Back to Dashboard</button>
+          <button onClick={() => navigate('/dashboard')} className="text-cyan-600 dark:text-cyan-400 font-semibold">Back to Dashboard</button>
         </div>
       </div>
     );
@@ -167,7 +167,7 @@ export const BlueprintPage: React.FC = () => {
     : project.status === 'completed' ? 10 : 0;
 
   return (
-    <div className="min-h-screen flex flex-col bg-darkBg text-slate-100">
+    <div className="min-h-screen flex flex-col bg-lightBg dark:bg-darkBg text-slate-800 dark:text-slate-100 transition-colors duration-300">
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-6 md:px-12 py-10 space-y-8">
@@ -177,35 +177,35 @@ export const BlueprintPage: React.FC = () => {
           <div className="space-y-2">
             <button
               onClick={() => navigate('/dashboard')}
-              className="flex items-center space-x-2 text-slate-400 hover:text-white text-xs transition-colors"
+              className="flex items-center space-x-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs transition-colors"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               <span>Back to Dashboard</span>
             </button>
             <div className="flex items-center space-x-3">
-              <h1 className="text-2xl font-extrabold text-white">{project.title}</h1>
+              <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white">{project.title}</h1>
               <div>
                 {project.status === 'completed' && (
-                  <span className="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-0.5 rounded-full font-mono font-bold flex items-center">
+                  <span className="text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 px-2.5 py-0.5 rounded-full font-mono font-bold flex items-center">
                     <CheckCircle2 className="h-3 w-3 mr-1" />
                     Operational
                   </span>
                 )}
                 {project.status === 'running' && (
-                  <span className="text-[10px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-2.5 py-0.5 rounded-full font-mono font-bold animate-pulse flex items-center">
+                  <span className="text-[10px] bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 px-2.5 py-0.5 rounded-full font-mono font-bold animate-pulse flex items-center">
                     <Loader2 className="h-3 w-3 mr-1 animate-spin" />
                     Executing: {project.current_agent}
                   </span>
                 )}
                 {project.status === 'failed' && (
-                  <span className="text-[10px] bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2.5 py-0.5 rounded-full font-mono font-bold flex items-center">
+                  <span className="text-[10px] bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 px-2.5 py-0.5 rounded-full font-mono font-bold flex items-center">
                     <AlertCircle className="h-3 w-3 mr-1" />
                     Failed
                   </span>
                 )}
               </div>
             </div>
-            <p className="text-slate-400 text-xs">{project.description || project.prompt}</p>
+            <p className="text-slate-600 dark:text-slate-400 text-xs">{project.description || project.prompt}</p>
           </div>
 
           {/* Export options */}
@@ -213,14 +213,14 @@ export const BlueprintPage: React.FC = () => {
             <div className="flex items-center space-x-3 w-full sm:w-auto">
               <button
                 onClick={handleExportWorkspace}
-                className="flex-1 sm:flex-none flex items-center justify-center space-x-2 bg-slate-900 border border-glassBorder/60 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition-colors"
+                className="flex-1 sm:flex-none flex items-center justify-center space-x-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-glassBorder/60 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition-colors"
               >
-                <FileText className="h-4 w-4 text-cyan-400" />
+                <FileText className="h-4 w-4 text-cyan-500 dark:text-cyan-400" />
                 <span>Export Markdown</span>
               </button>
               <button
                 onClick={handleDownloadZip}
-                className="flex-1 sm:flex-none flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-400 to-indigo-500 hover:from-cyan-500 hover:to-indigo-600 text-slate-950 text-xs font-bold px-4 py-2.5 rounded-xl transition-colors"
+                className="flex-1 sm:flex-none flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-indigo-600 dark:from-cyan-400 dark:to-indigo-500 hover:from-cyan-600 hover:to-indigo-700 dark:hover:from-cyan-500 dark:hover:to-indigo-600 text-slate-950 dark:text-slate-950 text-xs font-bold px-4 py-2.5 rounded-xl transition-colors"
               >
                 <FolderArchive className="h-4 w-4" />
                 <span>Compile ZIP</span>
@@ -240,34 +240,34 @@ export const BlueprintPage: React.FC = () => {
         {/* Tab panels shown on pipeline completion */}
         {project.status === 'completed' && blueprint && (
           <div className="space-y-6">
-            <div className="flex border-b border-glassBorder/60 space-x-6 text-sm font-semibold select-none overflow-x-auto pb-px">
+            <div className="flex border-b border-slate-200 dark:border-glassBorder/60 space-x-6 text-sm font-semibold select-none overflow-x-auto pb-px">
               <button
                 onClick={() => setActiveTab('blueprint')}
-                className={`py-3 relative ${activeTab === 'blueprint' ? 'text-cyan-400' : 'text-slate-400 hover:text-slate-200'}`}
+                className={`py-3 relative ${activeTab === 'blueprint' ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'}`}
               >
                 Specification Document
-                {activeTab === 'blueprint' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400 rounded-full"></span>}
+                {activeTab === 'blueprint' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-500 dark:bg-cyan-400 rounded-full"></span>}
               </button>
               <button
                 onClick={() => setActiveTab('architecture')}
-                className={`py-3 relative ${activeTab === 'architecture' ? 'text-cyan-400' : 'text-slate-400 hover:text-slate-200'}`}
+                className={`py-3 relative ${activeTab === 'architecture' ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'}`}
               >
                 Architecture Map
-                {activeTab === 'architecture' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400 rounded-full"></span>}
+                {activeTab === 'architecture' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-500 dark:bg-cyan-400 rounded-full"></span>}
               </button>
               <button
                 onClick={() => setActiveTab('codebase')}
-                className={`py-3 relative ${activeTab === 'codebase' ? 'text-cyan-400' : 'text-slate-400 hover:text-slate-200'}`}
+                className={`py-3 relative ${activeTab === 'codebase' ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'}`}
               >
                 Codebase Explorer
-                {activeTab === 'codebase' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400 rounded-full"></span>}
+                {activeTab === 'codebase' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-500 dark:bg-cyan-400 rounded-full"></span>}
               </button>
               <button
                 onClick={() => setActiveTab('raw_specs')}
-                className={`py-3 relative ${activeTab === 'raw_specs' ? 'text-cyan-400' : 'text-slate-400 hover:text-slate-200'}`}
+                className={`py-3 relative ${activeTab === 'raw_specs' ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'}`}
               >
                 JSON Outputs
-                {activeTab === 'raw_specs' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400 rounded-full"></span>}
+                {activeTab === 'raw_specs' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-500 dark:bg-cyan-400 rounded-full"></span>}
               </button>
             </div>
 
@@ -291,16 +291,16 @@ export const BlueprintPage: React.FC = () => {
                   <h4 className="font-semibold text-slate-400 mb-4 tracking-wider uppercase">Raw Structured JSON Logs</h4>
                   <div className="space-y-4">
                     <div>
-                      <span className="text-cyan-400 font-bold block mb-1">Requirement Analysis Spec:</span>
-                      <pre className="bg-slate-950 p-4 rounded-xl border border-slate-800">{JSON.stringify(blueprint.requirement_analysis, null, 2)}</pre>
+                      <span className="text-cyan-500 dark:text-cyan-400 font-bold block mb-1">Requirement Analysis Spec:</span>
+                      <pre className="bg-slate-955 p-4 rounded-xl border border-slate-800">{JSON.stringify(blueprint.requirement_analysis, null, 2)}</pre>
                     </div>
                     <div>
-                      <span className="text-cyan-400 font-bold block mb-1">Product Requirement Spec (PRD):</span>
-                      <pre className="bg-slate-950 p-4 rounded-xl border border-slate-800">{JSON.stringify(blueprint.prd, null, 2)}</pre>
+                      <span className="text-cyan-500 dark:text-cyan-400 font-bold block mb-1">Product Requirement Spec (PRD):</span>
+                      <pre className="bg-slate-955 p-4 rounded-xl border border-slate-800">{JSON.stringify(blueprint.prd, null, 2)}</pre>
                     </div>
                     <div>
-                      <span className="text-cyan-400 font-bold block mb-1">Database Schema Spec:</span>
-                      <pre className="bg-slate-950 p-4 rounded-xl border border-slate-800">{JSON.stringify(blueprint.database_schema, null, 2)}</pre>
+                      <span className="text-cyan-500 dark:text-cyan-400 font-bold block mb-1">Database Schema Spec:</span>
+                      <pre className="bg-slate-955 p-4 rounded-xl border border-slate-800">{JSON.stringify(blueprint.database_schema, null, 2)}</pre>
                     </div>
                   </div>
                 </div>

@@ -10,38 +10,61 @@
 
 /* Reusable Glassmorphism effects */
 .glass-effect {
-  background: rgba(13, 16, 27, 0.55);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.dark .glass-effect {
+  background: rgba(13, 16, 27, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-card {
-  background: rgba(18, 22, 38, 0.45);
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
   border-radius: 16px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.dark .glass-card {
+  background: rgba(18, 22, 38, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
 
 .glass-card:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 40px 0 rgba(0, 242, 254, 0.1);
+  transform: translateY(-2px);
+}
+.dark .glass-card:hover {
   border-color: rgba(255, 255, 255, 0.12);
   box-shadow: 0 12px 40px 0 rgba(0, 242, 254, 0.15);
-  transform: translateY(-2px);
 }
 
 .glass-input {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1e293b; /* text-slate-800 */
   border-radius: 8px;
   outline: none;
   transition: all 0.2s ease-in-out;
 }
+.dark .glass-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
 
 .glass-input:focus {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 242, 254, 0.5);
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+}
+.dark .glass-input:focus {
   background: rgba(255, 255, 255, 0.07);
   border-color: rgba(0, 242, 254, 0.5);
   box-shadow: 0 0 10px rgba(0, 242, 254, 0.25);

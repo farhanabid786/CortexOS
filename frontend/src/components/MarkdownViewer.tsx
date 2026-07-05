@@ -32,9 +32,9 @@ export const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ content }) => {
         
         const token = match[0];
         if (token.startsWith('**') && token.endsWith('**')) {
-          parts.push(<strong key={match.index} className="text-white font-semibold">{token.slice(2, -2)}</strong>);
+          parts.push(<strong key={match.index} className="text-slate-900 dark:text-white font-semibold">{token.slice(2, -2)}</strong>);
         } else if (token.startsWith('`') && token.endsWith('`')) {
-          parts.push(<code key={match.index} className="bg-slate-900 border border-slate-800 text-cyan-300 px-1 py-0.5 rounded font-mono text-xs">{token.slice(1, -1)}</code>);
+          parts.push(<code key={match.index} className="bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-cyan-600 dark:text-cyan-300 px-1 py-0.5 rounded font-mono text-xs">{token.slice(1, -1)}</code>);
         }
         
         lastIndex = combinedRegex.lastIndex;
@@ -55,7 +55,7 @@ export const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ content }) => {
         if (inCodeBlock) {
           inCodeBlock = false;
           elements.push(
-            <pre key={`code-${i}`} className="bg-slate-950/80 border border-slate-800/80 p-4 rounded-xl font-mono text-xs text-slate-300 overflow-x-auto my-4">
+            <pre key={`code-${i}`} className="bg-slate-950/90 border border-slate-800/80 p-4 rounded-xl font-mono text-xs text-slate-300 overflow-x-auto my-4">
               <code>{codeBlockContent.join('\n')}</code>
             </pre>
           );
@@ -89,22 +89,22 @@ export const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ content }) => {
       } else {
         if (currentTable) {
           elements.push(
-            <div key={`table-${i}`} className="overflow-x-auto my-6 border border-slate-800 rounded-xl">
-              <table className="min-w-full divide-y divide-slate-800 text-sm">
-                <thead className="bg-slate-900/60">
+            <div key={`table-${i}`} className="overflow-x-auto my-6 border border-slate-200 dark:border-slate-800 rounded-xl">
+              <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-sm">
+                <thead className="bg-slate-50 dark:bg-slate-900/60">
                   <tr>
                     {currentTable.headers.map((h, idx) => (
-                      <th key={idx} className="px-4 py-3 text-left font-bold text-slate-300 tracking-wider">
+                      <th key={idx} className="px-4 py-3 text-left font-bold text-slate-700 dark:text-slate-300 tracking-wider">
                         {formatInline(h)}
                       </th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 bg-transparent">
+                <tbody className="divide-y divide-slate-200/60 dark:divide-slate-800/60 bg-transparent">
                   {currentTable.rows.map((row, rIdx) => (
-                    <tr key={rIdx} className="hover:bg-white/5 transition-colors">
+                    <tr key={rIdx} className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
                       {row.map((cell, cIdx) => (
-                        <td key={cIdx} className="px-4 py-3 text-slate-300 whitespace-nowrap">
+                        <td key={cIdx} className="px-4 py-3 text-slate-600 dark:text-slate-300 whitespace-nowrap">
                           {formatInline(cell)}
                         </td>
                       ))}
@@ -120,30 +120,30 @@ export const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ content }) => {
 
       // Headings
       if (line.startsWith('# ')) {
-        elements.push(<h1 key={i} className="text-3xl font-extrabold text-white mt-8 mb-4 border-b border-slate-800 pb-2">{formatInline(line.slice(2))}</h1>);
+        elements.push(<h1 key={i} className="text-3xl font-extrabold text-slate-900 dark:text-white mt-8 mb-4 border-b border-slate-200 dark:border-slate-800 pb-2">{formatInline(line.slice(2))}</h1>);
       } else if (line.startsWith('## ')) {
-        elements.push(<h2 key={i} className="text-2xl font-bold text-white mt-6 mb-3">{formatInline(line.slice(3))}</h2>);
+        elements.push(<h2 key={i} className="text-2xl font-bold text-slate-900 dark:text-white mt-6 mb-3">{formatInline(line.slice(3))}</h2>);
       } else if (line.startsWith('### ')) {
-        elements.push(<h3 key={i} className="text-xl font-semibold text-cyan-400 mt-4 mb-2">{formatInline(line.slice(4))}</h3>);
+        elements.push(<h3 key={i} className="text-xl font-semibold text-cyan-600 dark:text-cyan-400 mt-4 mb-2">{formatInline(line.slice(4))}</h3>);
       }
       // Lists
       else if (line.trim().startsWith('- ') || line.trim().startsWith('* ')) {
         elements.push(
-          <ul key={i} className="list-disc pl-6 space-y-1 my-2 text-slate-300 text-sm">
+          <ul key={i} className="list-disc pl-6 space-y-1 my-2 text-slate-600 dark:text-slate-300 text-sm">
             <li>{formatInline(line.trim().slice(2))}</li>
           </ul>
         );
       } else if (/^\d+\.\s/.test(line.trim())) {
         const contentStr = line.trim().replace(/^\d+\.\s/, '');
         elements.push(
-          <ol key={i} className="list-decimal pl-6 space-y-1 my-2 text-slate-300 text-sm">
+          <ol key={i} className="list-decimal pl-6 space-y-1 my-2 text-slate-600 dark:text-slate-300 text-sm">
             <li>{formatInline(contentStr)}</li>
           </ol>
         );
       }
       // Normal Paragraphs
       else if (line.trim() !== '') {
-        elements.push(<p key={i} className="text-slate-300 text-sm leading-relaxed my-3">{formatInline(line)}</p>);
+        elements.push(<p key={i} className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed my-3">{formatInline(line)}</p>);
       }
     }
 

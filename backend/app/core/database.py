@@ -3,9 +3,27 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy import event
 from sqlalchemy.engine import Engine
 from app.core.config import settings
+import logging
+
+logger = logging.getLogger("cortexos-db")
 
 # Determine if we are using SQLite
 is_sqlite = settings.DATABASE_URL.startswith("sqlite")
+
+if is_sqlite:
+    logger.warning(
+        "\n================================================================================\n"
+        "WARNING: CortexOS is currently running with a local SQLite database.\n"
+        "If you are deploying this application on a platform with ephemeral storage\n"
+        "(such as Render, Heroku, Railway, or Fly.io), your data WILL be lost whenever\n"
+        "the server restarts or goes to sleep.\n\n"
+        "To persist your data, either:\n"
+        "1. Attach a Persistent Disk volume and point your DATABASE_URL to it\n"
+        "   (e.g., sqlite+aiosqlite:////data/cortexos.db)\n"
+        "2. Configure an external PostgreSQL database and set the DATABASE_URL env var\n"
+        "   (e.g., postgresql+asyncpg://user:pass@host:port/dbname)\n"
+        "================================================================================"
+    )
 
 # SQLAlchemy base class
 Base = declarative_base()

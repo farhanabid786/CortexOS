@@ -14,7 +14,7 @@ const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   
   if (loading) {
     return (
-      <div className="min-h-screen bg-darkBg flex justify-center items-center">
+      <div className="min-h-screen bg-lightBg dark:bg-darkBg flex justify-center items-center transition-colors duration-300">
         <div className="h-8 w-8 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -29,7 +29,7 @@ const GuestOnly: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   
   if (loading) {
     return (
-      <div className="min-h-screen bg-darkBg flex justify-center items-center">
+      <div className="min-h-screen bg-lightBg dark:bg-darkBg flex justify-center items-center transition-colors duration-300">
         <div className="h-8 w-8 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );

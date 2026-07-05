@@ -17,11 +17,11 @@ export const Navbar: React.FC = () => {
   return (
     <nav className="sticky top-0 z-50 glass-effect border-b border-glassBorder py-4 px-6 md:px-12 flex justify-between items-center">
       <Link to="/" className="flex items-center space-x-3 group">
-        <div className="bg-gradient-to-tr from-cyan-400 to-indigo-600 p-2 rounded-xl text-white shadow-lg group-hover:scale-105 transition-transform">
+        <div className="bg-gradient-to-tr from-cyan-500 to-indigo-600 dark:from-cyan-400 dark:to-indigo-600 p-2 rounded-xl text-white shadow-lg group-hover:scale-105 transition-transform">
           <Layers className="h-6 w-6 animate-pulse-slow" />
         </div>
-        <span className="font-extrabold text-xl md:text-2xl tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent dark:from-white dark:via-slate-200 dark:to-slate-500">
-          Cortex<span className="text-cyan-400">OS</span>
+        <span className="font-extrabold text-xl md:text-2xl tracking-tight bg-gradient-to-r from-slate-900 via-slate-800 to-slate-600 dark:from-white dark:via-slate-200 dark:to-slate-500 bg-clip-text text-transparent">
+          Cortex<span className="text-cyan-600 dark:text-cyan-400">OS</span>
         </span>
       </Link>
 

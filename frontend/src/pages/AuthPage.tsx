@@ -41,7 +41,7 @@ export const AuthPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-darkBg text-slate-100">
+    <div className="min-h-screen flex flex-col bg-lightBg dark:bg-darkBg text-slate-800 dark:text-slate-100 transition-colors duration-300">
       <Navbar />
 
       <div className="flex-1 flex justify-center items-center px-4 py-12 relative overflow-hidden">
@@ -50,10 +50,10 @@ export const AuthPage: React.FC = () => {
 
         <div className="w-full max-w-md glass-card p-8 space-y-6">
           <div className="text-center space-y-2">
-            <h2 className="text-2xl font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               {isLogin ? "Sign In to CortexOS" : "Create Developer Profile"}
             </h2>
-            <p className="text-slate-400 text-xs">
+            <p className="text-slate-500 dark:text-slate-400 text-xs">
               {isLogin ? "Access your agent software blueprints pipeline" : "Initialize details to build software agents"}
             </p>
           </div>
@@ -61,8 +61,8 @@ export const AuthPage: React.FC = () => {
           {error && (
             <div className={`p-3 rounded-lg border text-xs flex items-center space-x-2 ${
               error.includes("successfully") 
-                ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400" 
-                : "bg-rose-500/10 border-rose-500/30 text-rose-400"
+                ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-400" 
+                : "bg-rose-500/10 border-rose-500/30 text-rose-600 dark:text-rose-400"
             }`}>
               <AlertCircle className="h-4 w-4 flex-shrink-0" />
               <span>{error}</span>
@@ -72,9 +72,9 @@ export const AuthPage: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             {!isLogin && (
               <div className="space-y-1">
-                <label className="text-[10px] text-slate-400 font-mono tracking-wider block">FULL NAME</label>
+                <label className="text-[10px] text-slate-500 dark:text-slate-400 font-mono tracking-wider block">FULL NAME</label>
                 <div className="relative">
-                  <User className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+                  <User className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
                   <input
                     type="text"
                     required
@@ -88,9 +88,9 @@ export const AuthPage: React.FC = () => {
             )}
 
             <div className="space-y-1">
-              <label className="text-[10px] text-slate-400 font-mono tracking-wider block">EMAIL ADDRESS</label>
+              <label className="text-[10px] text-slate-500 dark:text-slate-400 font-mono tracking-wider block">EMAIL ADDRESS</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+                <Mail className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
                 <input
                   type="email"
                   required
@@ -103,9 +103,9 @@ export const AuthPage: React.FC = () => {
             </div>
 
             <div className="space-y-1">
-              <label className="text-[10px] text-slate-400 font-mono tracking-wider block">PASSWORD</label>
+              <label className="text-[10px] text-slate-500 dark:text-slate-400 font-mono tracking-wider block">PASSWORD</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+                <Lock className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
                 <input
                   type="password"
                   required
@@ -120,7 +120,7 @@ export const AuthPage: React.FC = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full bg-gradient-to-r from-cyan-400 to-indigo-500 hover:from-cyan-500 hover:to-indigo-600 text-slate-950 font-extrabold py-3 rounded-xl flex items-center justify-center space-x-2 transition-all disabled:opacity-50"
+              className="w-full bg-gradient-to-r from-cyan-500 to-indigo-600 dark:from-cyan-400 dark:to-indigo-500 hover:from-cyan-600 hover:to-indigo-700 dark:hover:from-cyan-500 dark:hover:to-indigo-600 text-slate-950 dark:text-slate-950 font-extrabold py-3 rounded-xl flex items-center justify-center space-x-2 transition-all disabled:opacity-50"
             >
               <span>{isLogin ? "Sign In" : "Register Profile"}</span>
               {submitting ? (
@@ -137,7 +137,7 @@ export const AuthPage: React.FC = () => {
                 setIsLogin(!isLogin);
                 setError(null);
               }}
-              className="text-xs text-cyan-400 hover:text-cyan-300 font-semibold focus:outline-none"
+              className="text-xs text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 font-semibold focus:outline-none"
             >
               {isLogin ? "Need a developer profile? Register here" : "Already registered? Login here"}
             </button>
